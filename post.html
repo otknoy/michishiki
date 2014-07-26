@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="michishiki post">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Post</title>
+    
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+
+    <script type="text/javascript" src="js/post.js"></script>
+
+  </head>
+  <body>
+
+    <div data-role="page" id="post">
+      <div data-role="header" data-position="fixed" data-add-back-btn="true">
+	<h1>Post</h1>
+      </div>
+
+      <div data-role="content">
+	<!-- <form method="post" action="http://mpmc.dip.jp/~otknoy/michishiki_api_server/post.py" id="post_form"> -->
+	<form id="post_form">
+
+	  <label>Name:</label>
+	  <input type="text" name="posted_by" id="basic" />
+	  
+	  <label>Title:</label>
+	  <input type="text" name="title" />
+	  
+	  <label>Comment:</label>
+	  <input type="text" name="comment" />
+
+	  <label>Latitude:</label>
+	  <input type="number" step="any" name="latitude" />
+
+	  <label>Longitude:</label>
+	  <input type="number" step="any" name="longitude" />
+	  
+	  <input type="submit" id="post_button" value="送信" data-theme="b" data-icon="arrow-r" data-inline="true">
+	</form>
+      </div>
+    </div>
+
+  </body>
+</html>
