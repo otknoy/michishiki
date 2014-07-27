@@ -19,11 +19,16 @@ $(function() {
 		$button.attr('disabled', false);
 	    },
 
-	    success: function(result, textStatus, xhr) {
-		console.log(xhr);
-	    }
-	});
+	    success: function(data, textStatus, xhr) {
+		$form[0].reset();
 
-	console.log('submit');
+		// 
+	    },
+
+	    error: function(xhr, textStatus, error) {
+		alert('error');
+		console.log(error);
+            }
+	});
     });
 });
