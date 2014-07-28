@@ -1,5 +1,5 @@
 $(function() {
-    $.getJSON('http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py',
+    $.getJSON('http://mpmc.dip.jp/~otknoy/michishiki_api_server/select.py',
 	      function(json) {
 		  for (var i = 0; i < json.length; i++) {
 		      var $li = createListItem(json[i].title, json[i].comment, json[i].posted_by);
