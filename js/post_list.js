@@ -14,5 +14,5 @@ function createListItem(title, comment, posted_by) {
     var $comment = $('<p>').text(comment);
     var $posted_by = $('<p>').text(posted_by);
     var $li = $('<li>').append($title).append($comment).append($posted_by);
-    return $li
+    return $li;
 }
