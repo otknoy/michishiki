@@ -1,22 +1,19 @@
-// var api_uri = 'http://mpmc.dip.jp/~otknoy/michishiki_api_server/select.py';
-var api_uri = 'http://localhost/~otknoy/michishiki_api_server/select.py';
+var api_uri = 'http://mpmc.dip.jp/~otknoy/michishiki_api_server/select.py';
 
 var map = null;
 var markers = null;
-var infoWindow = null;
 
 $(document).on('pageshow', '#map', function() {
     markers = [];
     map = createMap();
-    infoWindow = new google.maps.InfoWindow;
+
+    updateCurrentLocation();
 });
 
 function createMap() {
     $('#map-canvas').css('height', 500);
 
-    var latlng = new google.maps.LatLng(34.87728, 135.576798); // kutc
     var mapOptions = {
-	center: latlng,
 	zoom: 8,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -39,6 +36,21 @@ function createMarker(map, title, latitude, longitude) {
 	position: latlng,
 	map: map,
 	title : title
-	});
+    });
     return marker;
+}
+
+function updateCurrentLocation() {
+    if(!navigator.geolocation) {
+	console.log('Geolocation API is unavalable.');
+	return ;
+    }
+    
+    navigator.geolocation.getCurrentPosition(function(position) {
+	var pos = new google.maps.LatLng(position.coords.latitude,
+					 position.coords.longitude);
+	map.setCenter(pos);
+    }, function() {
+	console.log('getCurrentPosition faild');
+    });
 }
