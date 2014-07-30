@@ -12,7 +12,7 @@ $(document).on('pageshow', '#map', function() {
 });
 
 function createMap() {
-    $('#map_canvas').css('height', 500);
+    $('#map-canvas').css('height', 500);
 
     var latlng = new google.maps.LatLng(34.87728, 135.576798); // kutc
     var mapOptions = {
@@ -20,7 +20,7 @@ function createMap() {
 	zoom: 8,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     // Get posts and create markers
     $.getJSON(api_uri, function(json) {
