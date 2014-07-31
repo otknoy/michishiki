@@ -1,12 +1,13 @@
 $(function() {
-    $.getJSON('http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py',
-	      function(json) {
-		  for (var i = 0; i < json.length; i++) {
-		      var $li = createListItem(json[i].title, json[i].comment, json[i].posted_by);
-		      $('#post_list').append($li);
-		  }
-		  $('#post_list').listview('refresh');
-	      });
+    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
+    $.getJSON(api_uri, function(json) {
+	console.log(json);
+	for (var i = 0; i < json.length; i++) {
+	    var $li = createListItem(json[i].title, json[i].comment, json[i].posted_by);
+	    $('#post_list').append($li);
+	}
+	$('#post_list').listview('refresh');
+    });
 });
 
 function createListItem(title, comment, posted_by) {
