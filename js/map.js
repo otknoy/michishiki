@@ -13,7 +13,9 @@ $(document).on('pageshow', '#map', function() {
 function createMap() {
     $('#map-canvas').css('height', 500);
 
+    var latlng = new google.maps.LatLng(34.87728, 135.576798); // kutc
     var mapOptions = {
+	center: latlng,
 	zoom: 8,
 	mapTypeId: google.maps.MapTypeId.ROADMAP
     };
