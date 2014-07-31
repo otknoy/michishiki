@@ -1,4 +1,4 @@
-var api_uri = 'http://mpmc.dip.jp/~otknoy/michishiki_api_server/select.py';
+var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
 
 var map = null;
 var markers = null;
