@@ -44,7 +44,7 @@ function createMarker(map, title, latitude, longitude) {
 
 function updateCurrentLocation() {
     if(!navigator.geolocation) {
-	console.log('Geolocation API is unavalable.');
+	alert('Geolocation API is unavalable.');
 	return ;
     }
     
@@ -52,7 +52,7 @@ function updateCurrentLocation() {
 	var pos = new google.maps.LatLng(position.coords.latitude,
 					 position.coords.longitude);
 	map.setCenter(pos);
-    }, function() {
-	console.log('getCurrentPosition faild');
+    }, function(error) {
+	alert('ERROR(' + error.code + '): ' + error.message);
     });
 }
