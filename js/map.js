@@ -52,6 +52,9 @@ function updateCurrentLocation() {
 	var pos = new google.maps.LatLng(position.coords.latitude,
 					 position.coords.longitude);
 	map.setCenter(pos);
+
+	var marker = createMarker(map, 'Current location', pos.latitude, pos.longitude);
+	markers.push(marker);
     }, function(error) {
 	alert('ERROR(' + error.code + '): ' + error.message);
     });
