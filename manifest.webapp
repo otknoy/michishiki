@@ -1,6 +1,6 @@
 {
     "name": "MichiShiki",
-    "launch_path": "/map.html",
+    "launch_path": "/index.html",
     "icons": {
 	"128": "img/icon-128.png"
     },

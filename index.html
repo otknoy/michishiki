@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="map sample">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Map</title>
+    
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB84X5gJILga4EUYrWor2seSgHg5TQPLaY&sensor=true"></script>
+    <script type="text/javascript" src="js/map.js"></script>
+    <script type="text/javascript" src="js/post.js"></script>
+
+  </head>
+  <body>
+
+    <!-- Main page -->
+    <div data-role="page" id="map">
+      <div data-role="header" data-position="fixed">
+	<!-- <a href="" data-role="button" data-icon="search" data-transition="pop">Search</a> -->
+	<h1>Map</h1>
+	<a href="#select-location" data-role="button" class="ui-btn-right" data-icon="plus" data-transition="pop" >Post</a>
+      </div>
+
+      <div data-role="content">
+	<div id="map-canvas"></div>
+      </div>
+    </div>
+
+    
+    <!-- Post -->
+    <div data-role="page" id="select-location">
+      <div data-role="header" data-position="fixed" data-add-back-btn="true">
+	<h1>Select location</h1>
+	<a href="#post" data-role="button" class="ui-btn-right" data-icon="arrow-r" data-transition="slide">Next</a>
+      </div>
+    </div>
+
+    <div data-role="page" id="post">
+      <div data-role="header" data-position="fixed" data-add-back-btn="true">
+	<h1>Post</h1>
+      </div>
+
+      <div data-role="content">
+	<form method="post" action="http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/post.py" id="post_form">
+	  <label>名前:</label>
+	  <input type="text" name="posted_by" id="basic" />
+	  
+	  <label>タイトル:</label>
+	  <input type="text" name="title" />
+	  
+	  <label>コメント:</label>
+	  <input type="text" name="comment" />
+
+	  <label>地元度:</label>
+	  <input type="range" min="0" max="100" step="1" name="localite" />
+
+	  <label>Latitude:</label>
+	  <input type="number" step="any" name="latitude" />
+
+	  <label>Longitude:</label>
+	  <input type="number" step="any" name="longitude" />
+	  
+	  <input type="submit" id="post_button" value="送信" data-theme="b" data-icon="arrow-r" data-inline="true" />
+	</form>
+      </div>
+    </div>
+
+    
+  </body>
+</html>
