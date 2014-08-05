@@ -4,7 +4,6 @@ $(function() {
 
 	var $form = $('#post_form');
 	var $button = $form.find('#post_button');
-	console.log($button);
 	$.ajax({
             url: $form.attr('action'),
             type: $form.attr('method'),
