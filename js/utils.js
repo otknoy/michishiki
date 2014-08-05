@@ -6,7 +6,6 @@
 //     .fail(function() {
 // 	// faile
 //     });
-
 function getCurrentLocation() {
     var dfd = $.Deferred();
 
