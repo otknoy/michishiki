@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Polymer sample</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <script src="./bower_components/platform/platform.js"></script>
+    <link rel="import" href="./bower_components/polymer/polymer.html">
+    <link rel="import" href="./bower_components/google-map/google-map.html">
+
+    <script src="./bower_components/jquery/dist/jquery.js"></script>
+    <script src="./js/utils.js"></script>
+
+    <style>
+      google-map {
+      display: block;
+      height: 600px;
+      }
+    </style>
+
+  </head>
+
+  <body unresolved>
+    
+    <google-map latitude="37.77493 "longitude="-122.41942"></google-map>
+    <script>
+      getCurrentLocation().done(function(position) {
+        var map = document.querySelector('google-map')
+        map.latitude  = position.latitude;
+        map.longitude = position.longitude;
+      });
+    </script>
+
+  </body>
+</html>
