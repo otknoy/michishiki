@@ -9,7 +9,6 @@
 	"url": "https://github.com/otknoy/michishiki"
     },
     "default_locale": "ja",
-    "fullscreen": "true",
     "permissions": {
 	"geolocation": {
     	    "description": "Get current geolocation"

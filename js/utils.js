@@ -16,7 +16,7 @@ function getCurrentLocation() {
 
     navigator.geolocation.getCurrentPosition(function(position) {
 	var location = {"latitude" : position.coords.latitude,
-		   "longitude": position.coords.longitude};
+			"longitude": position.coords.longitude};
 	dfd.resolve(location);
     }, function(error) {
 	alert('ERROR(' + error.code + '): ' + error.message);
