@@ -4,11 +4,15 @@ var map = null;
 var markers = null;
 
 $(document).on('pageshow', '#map', function() {
+    initMap();
+});
+
+function initMap() {
     markers = [];
     map = createMap();
 
     updateCurrentLocation();
-});
+}
 
 function createMap() {
     $('#map-canvas').css('height', 500);
