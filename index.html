@@ -1,86 +1,68 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html lang="ja" ng-app="myApp">
   <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="map sample">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Map</title>
-    
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css">
-    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
 
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB84X5gJILga4EUYrWor2seSgHg5TQPLaY&sensor=true"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="js/post.js"></script>
-    <script type="text/javascript" src="js/post_list.js"></script>
+    <title>My App</title>
 
+    <link rel="stylesheet" href="lib/onsen/css/onsenui.css">
+    <link rel="stylesheet" href="lib/onsen/css/onsen-css-components.css">
+    <link rel="stylesheet" href="styles/app.css"/>
+
+    <script src="lib/onsen/js/angular/angular.js"></script>
+    <script src="lib/onsen/js/onsenui.js"></script>
+
+    <script src="cordova.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+      ons.ready(function() {
+      });
+    </script>
   </head>
+
   <body>
 
-    <!-- Main Map Page -->
-    <div data-role="page" id="map">
-      <div data-role="header" data-position="fixed">
-	<a href="#post-list" data-role="button" data-icon="search" data-transition="pop">List</a>
-	<h1>Map</h1>
-	<a href="#select-location" data-role="button" class="ui-btn-right" data-icon="plus" data-transition="pop" >Post</a>
-      </div>
+    <ons-navigator>
+      <ons-page style="background-color: #f9f9f9">
+	<ons-toolbar>
+          <div class="center">Master Detail</div>
+	</ons-toolbar>
 
-      <div data-role="content">
-	<div id="map-canvas"></div>
-      </div>
-    </div>
+	<ons-list ng-controller="MasterController">
+          <ons-list-item modifier="chevron" ng-repeat="item in items" ng-click="showDetail($index)">
+            <ons-row>
+              <ons-col width="38px">
+		<ons-icon icon="{{item.icon}}" fixed-width="true" style="color: #999"></ons-icon>
+              </ons-col>
+              <ons-col class="left">
+		{{item.title}}
+              </ons-col>
+            </ons-row>
+          </ons-list-item>
+	</ons-list>
+      </ons-page>
+    </ons-navigator>
 
-    
-    <!-- Post Page -->
-    <div data-role="page" id="select-location">
-      <div data-role="header" data-position="fixed" data-add-back-btn="true">
-	<h1>Select location</h1>
-	<a href="#post" data-role="button" class="ui-btn-right" data-icon="arrow-r" data-transition="slide">Next</a>
-      </div>
-    </div>
+    <script type="text/ons-template" id="detail.html">
+      <ons-page ng-controller="DetailController" style="background-color: #f9f9f9;">
+	<ons-toolbar>
+          <div class="left"><ons-back-button>Back</ons-back-button></div>
+          <div class="center">Details</div>
+	</ons-toolbar>
 
-    <div data-role="page" id="post">
-      <div data-role="header" data-position="fixed" data-add-back-btn="true">
-	<h1>Post</h1>
-      </div>
-
-      <div data-role="content">
-	<form method="post" action="http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/post.py" id="post_form">
-	  <label>名前:</label>
-	  <input type="text" name="posted_by" id="basic" />
-	  
-	  <label>タイトル:</label>
-	  <input type="text" name="title" />
-	  
-	  <label>コメント:</label>
-	  <input type="text" name="comment" />
-
-	  <label>地元度:</label>
-	  <input type="range" min="0" max="100" step="1" name="localite" />
-
-	  <label>Latitude:</label>
-	  <input type="number" step="any" name="latitude" />
-
-	  <label>Longitude:</label>
-	  <input type="number" step="any" name="longitude" />
-	  
-	  <input type="submit" id="post_button" value="送信" data-theme="b" data-icon="arrow-r" data-inline="true" />
-	</form>
-      </div>
-    </div>
-
-
-    <!-- Post List Page-->
-    <div data-role="page" id="post-list">
-      <div data-role="header" data-position="fixed" data-add-back-btn="true">
-	<h1>Post List</h1>
-      </div>
-
-      <div data-role="content">
-	<ul data-role="listview" id="post_list"></ul>
-      </div>
-    </div>
-    
+	<br>
+	<ons-list>
+          <ons-list-header>Item Information</ons-list-header>
+          <ons-list-item><strong>{{item.title}}</strong></ons-list-item>
+          <ons-list-item>
+            <ons-row>
+              <ons-col width="38px"><ons-icon icon="{{item.icon}}" fixed-width="true" style="color: #999"></ons-icon></ons-col>
+              <ons-col>{{item.description}}</ons-col>
+            </ons-row>
+	</ons-list>
+      </ons-page>
+    </script>
   </body>
 </html>
