@@ -13,6 +13,7 @@
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyB84X5gJILga4EUYrWor2seSgHg5TQPLaY&sensor=true"></script>
     <script type="text/javascript" src="js/map.js"></script>
     <script type="text/javascript" src="js/post.js"></script>
+    <script type="text/javascript" src="js/post_list.js"></script>
 
   </head>
   <body>
@@ -20,7 +21,7 @@
     <!-- Main Map Page -->
     <div data-role="page" id="map">
       <div data-role="header" data-position="fixed">
-	<!-- <a href="" data-role="button" data-icon="search" data-transition="pop">Search</a> -->
+	<a href="#post-list" data-role="button" data-icon="search" data-transition="pop">List</a>
 	<h1>Map</h1>
 	<a href="#select-location" data-role="button" class="ui-btn-right" data-icon="plus" data-transition="pop" >Post</a>
       </div>
@@ -69,6 +70,17 @@
       </div>
     </div>
 
+
+    <!-- Post List Page-->
+    <div data-role="page" id="post-list">
+      <div data-role="header" data-position="fixed" data-add-back-btn="true">
+	<h1>Post List</h1>
+      </div>
+
+      <div data-role="content">
+	<ul data-role="listview" id="post_list"></ul>
+      </div>
+    </div>
     
   </body>
 </html>
