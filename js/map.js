@@ -11,7 +11,15 @@ function initMap() {
     markers = [];
     map = createMap();
 
-    updateCurrentLocation();
+    utils.getCurrentLocation()
+	.done(function(location) {
+	    var pos = new google.maps.LatLng(location.latitude,
+					 location.longitude);
+	    map.setCenter(pos);
+
+	    var marker = createMarker(map, 'Current location', pos.latitude, pos.longitude);
+	    markers.push(marker);
+	});
 }
 
 function createMap() {
@@ -44,22 +52,4 @@ function createMarker(map, title, latitude, longitude) {
 	title : title
     });
     return marker;
-}
-
-function updateCurrentLocation() {
-    if(!navigator.geolocation) {
-	alert('Geolocation API is unavalable.');
-	return ;
-    }
-    
-    navigator.geolocation.getCurrentPosition(function(position) {
-	var pos = new google.maps.LatLng(position.coords.latitude,
-					 position.coords.longitude);
-	map.setCenter(pos);
-
-	var marker = createMarker(map, 'Current location', pos.latitude, pos.longitude);
-	markers.push(marker);
-    }, function(error) {
-	alert('ERROR(' + error.code + '): ' + error.message);
-    });
 }
