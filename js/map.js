@@ -14,7 +14,7 @@ function initMap() {
     utils.getCurrentLocation()
 	.done(function(location) {
 	    var pos = new google.maps.LatLng(location.latitude,
-					 location.longitude);
+					     location.longitude);
 	    map.setCenter(pos);
 
 	    var marker = createMarker(map, 'Current location', pos.latitude, pos.longitude);
