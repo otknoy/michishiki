@@ -1,13 +1,14 @@
+var utils = {};
+
 // 使い方
-// getCurrentLocation()
+// utils.getCurrentLocation()
 //     .done(function(location) {
 // 	// success
 //     })
 //     .fail(function() {
 // 	// faile
 //     });
-
-function getCurrentLocation() {
+utils.getCurrentLocation = function() {
     var dfd = $.Deferred();
 
     if(!navigator.geolocation) {
@@ -16,8 +17,9 @@ function getCurrentLocation() {
     }
 
     navigator.geolocation.getCurrentPosition(function(position) {
+	console.log(position.coords);
 	var location = {"latitude" : position.coords.latitude,
-		   "longitude": position.coords.longitude};
+			"longitude": position.coords.longitude};
 	dfd.resolve(location);
     }, function(error) {
 	alert('ERROR(' + error.code + '): ' + error.message);
@@ -25,4 +27,4 @@ function getCurrentLocation() {
     });
 
     return dfd.promise();
-}
+};
