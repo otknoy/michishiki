@@ -17,7 +17,6 @@ utils.getCurrentLocation = function() {
     }
 
     navigator.geolocation.getCurrentPosition(function(position) {
-	console.log(position.coords);
 	var location = {"latitude" : position.coords.latitude,
 			"longitude": position.coords.longitude};
 	dfd.resolve(location);
