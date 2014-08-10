@@ -27,3 +27,14 @@ utils.getCurrentLocation = function() {
 
     return dfd.promise();
 };
+
+utils.fetchPosts = function() {
+    var dfd = $.Deferred();
+
+    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
+    $.getJSON(api_uri, function(json) {
+	dfd.resolve(json);
+    });
+
+    return dfd.promise();
+};

@@ -12,24 +12,22 @@ function initMap() {
     $('#map-canvas').css('height', 500);
     Map.map = Map.createMap('map-canvas', 34.87728, 135.576798); // kutc
 
-    // Get posts and create markers
-    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
-    $.getJSON(api_uri, function(json) {
+    utils.fetchPosts().done(function(json) {
 	for (var i = 0; i < json.length; i++) {
-	    var marker = Map.createMarker(Map.map, json[i].title, json[i].latitude, json[i].longitude);
+	    var marker = Map.createMarker(Map.map, json[i].title,
+					  json[i].latitude, json[i].longitude);
 	    Map.markers.push(marker);
 	}
     });
 
-    utils.getCurrentLocation()
-	.done(function(location) {
-	    var pos = new google.maps.LatLng(location.latitude,
-					     location.longitude);
-	    Map.map.setCenter(pos);
+    utils.getCurrentLocation().done(function(location) {
+	var pos = new google.maps.LatLng(location.latitude,
+					 location.longitude);
 
-	    var marker = Map.createMarker(Map.map, 'Current location', pos.latitude, pos.longitude);
-	    Map.markers.push(marker);
-	});
+	var marker = Map.createMarker(Map.map, 'Current location',
+				      location.latitude, location.longitude);
+	Map.markers.push(marker);
+    });
 }
 
 Map.createMap = function(id, lat, lng) {
