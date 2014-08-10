@@ -15,7 +15,7 @@ function initMap() {
     utils.fetchPosts().done(function(json) {
 	for (var i = 0; i < json.length; i++) {
 	    var marker = Map.createMarker(Map.map, json[i].title,
-					  json[i].latitude, json[i].longitude);
+					  json[i].latitude, json[i].longitude, false);
 	    Map.markers.push(marker);
 	}
     });
@@ -25,7 +25,7 @@ function initMap() {
 					 location.longitude);
 
 	var marker = Map.createMarker(Map.map, 'Current location',
-				      location.latitude, location.longitude);
+				      location.latitude, location.longitude, false);
 	Map.markers.push(marker);
     });
 }
@@ -40,11 +40,12 @@ Map.createMap = function(id, lat, lng) {
     return map;
 };
 
-Map.createMarker = function(map, title, lat, lng) {
+Map.createMarker = function(map, title, lat, lng, draggable) {
     var marker = new google.maps.Marker({
 	position: new google.maps.LatLng(lat, lng),
 	map: map,
-	title : title
+	title : title,
+	draggable: draggable
     });
     return marker;
 };

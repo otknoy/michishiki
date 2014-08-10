@@ -7,6 +7,6 @@ $(document).on('pageshow', '#select-place', function() {
 	Place.map = Map.createMap('select-place-map-canvas',
 				  location.latitude, location.longitude);
 	Place.currentLocation = Map.createMarker(Place.map, 'Current Location',
-						 location.latitude, location.longitude);
+						 location.latitude, location.longitude, true);
     });
 });
