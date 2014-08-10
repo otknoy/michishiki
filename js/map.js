@@ -1,24 +1,23 @@
-var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
-
-var map = null;
-var markers = null;
+var map = {};
+map.map = null;
+map.markers = null;
 
 $(document).on('pageshow', '#map', function() {
     initMap();
 });
 
 function initMap() {
-    markers = [];
-    map = createMap();
+    map.markers = [];
+    map.map = createMap();
 
     utils.getCurrentLocation()
 	.done(function(location) {
 	    var pos = new google.maps.LatLng(location.latitude,
 					     location.longitude);
-	    map.setCenter(pos);
+	    map.map.setCenter(pos);
 
 	    var marker = createMarker(map, 'Current location', pos.latitude, pos.longitude);
-	    markers.push(marker);
+	    map.markers.push(marker);
 	});
 }
 
@@ -34,10 +33,11 @@ function createMap() {
     var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     // Get posts and create markers
+    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
     $.getJSON(api_uri, function(json) {
 	for (var i = 0; i < json.length; i++) {
 	    var marker = createMarker(map, json[i].title, json[i].latitude, json[i].longitude);
-	    markers.push(marker);
+	    map.markers.push(marker);
 	}
     });
 
