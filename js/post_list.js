@@ -1,4 +1,8 @@
-$(function() {
+$(document).on('pageshow', '#post-list', function() {
+    initPostList();
+});
+
+function initPostList() {
     var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py?order_by=created_at&order=descend';
     $.getJSON(api_uri, function(json) {
 	for (var i = 0; i < json.length; i++) {
@@ -7,7 +11,7 @@ $(function() {
 	}
 	$('#post_list').listview('refresh');
     });
-});
+}
 
 function createListItem(title, comment, posted_by) {
     var $title = $('<h2>').text(title);
