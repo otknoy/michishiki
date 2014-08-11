@@ -17,6 +17,10 @@ function initMap() {
 	    var marker = Map.createMarker(Map.map, json[i].title,
 					  json[i].latitude, json[i].longitude, false);
 	    Map.markers.push(marker);
+
+	    google.maps.event.addListener(marker, 'click', function() {
+		alert(this.title);
+	    });
 	}
     });
 
