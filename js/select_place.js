@@ -10,3 +10,10 @@ $(document).on('pageshow', '#select-place', function() {
 						 location.latitude, location.longitude, true);
     });
 });
+
+Place.getMarkerLocation = function() {
+    var pos =  Place.currentLocation.getPosition();
+    var lat = pos.lat();
+    var lng = pos.lng();
+    return {"latitude": lat, "longitude": lng};
+};
