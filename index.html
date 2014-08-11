@@ -25,7 +25,7 @@
       <div data-role="header" data-position="fixed">
 	<a href="#post-list" data-role="button" data-icon="search" data-transition="pop">List</a>
 	<h1>Map</h1>
-	<a href="#select-place" data-role="button" class="ui-btn-right" data-icon="plus" data-transition="pop" >Post</a>
+	<a href="#select-place" data-role="button" id="post-next-button" class="ui-btn-right" data-icon="plus" data-transition="pop" >Post</a>
       </div>
 
       <div data-role="content">
@@ -68,10 +68,10 @@
 	  <input type="range" min="0" max="100" step="1" name="localite" />
 
 	  <label>Latitude:</label>
-	  <input type="number" step="any" name="latitude" />
+	  <input type="number" id="post-lat" step="any" name="latitude" />
 
 	  <label>Longitude:</label>
-	  <input type="number" step="any" name="longitude" />
+	  <input type="number" id="post-lng" step="any" name="longitude" />
 	  
 	  <input type="submit" id="post_button" value="送信" data-theme="b" data-icon="arrow-r" data-inline="true" />
 	</form>
