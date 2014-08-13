@@ -16,10 +16,11 @@ function initMap() {
 	var pos = new google.maps.LatLng(location.latitude,
 					 location.longitude);
 
-	var marker = Map.createMarker(Map.map, 'Current location',
-				      location.latitude, location.longitude, false);
-	Map.markers.push(marker);
+	Map.currentLocation = Map.createMarker(Map.map, 'Current location',
+					       location.latitude, location.longitude, false);
     });
+
+    Map.infoWindow = new google.maps.InfoWindow;
 
     utils.fetchPosts().done(function(json) {
 	for (var i = 0; i < json.length; i++) {
@@ -29,7 +30,9 @@ function initMap() {
 	    Map.markers.push(marker);
 
 	    google.maps.event.addListener(marker, 'click', function() {
-		console.log(this.data);
+		var content = Map.jsonToContent(this.data);
+		Map.infoWindow.setContent(content);
+		Map.infoWindow.open(Map.map, this);
 	    });
 	}
     });
@@ -53,4 +56,21 @@ Map.createMarker = function(map, title, lat, lng, draggable) {
 	draggable: draggable
     });
     return marker;
+};
+
+Map.jsonToContent = function(json) {
+    var title = json.title;
+    var created_at = json.created_at;
+    var posted_by = json.posted_by;
+    var comment = json.comment;
+
+    var content =
+	    '<div>' +
+	    '<h1>' + title + '</h1>' +
+	    '<h2>' + created_at + '</h2>' +
+	    '<h2>' + posted_by + '</h2>' +
+	    '<p>' + comment + '</p>' +
+	    '</div>';
+
+    return content;
 };
