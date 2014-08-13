@@ -16,10 +16,11 @@ function initMap() {
 	for (var i = 0; i < json.length; i++) {
 	    var marker = Map.createMarker(Map.map, json[i].title,
 					  json[i].latitude, json[i].longitude, false);
+	    marker.data = json[i];
 	    Map.markers.push(marker);
 
 	    google.maps.event.addListener(marker, 'click', function() {
-		alert(this.title);
+		console.log(this.data);
 	    });
 	}
     });
