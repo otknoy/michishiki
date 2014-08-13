@@ -12,6 +12,15 @@ function initMap() {
     $('#map-canvas').css('height', 500);
     Map.map = Map.createMap('map-canvas', 34.87728, 135.576798); // kutc
 
+    utils.getCurrentLocation().done(function(location) {
+	var pos = new google.maps.LatLng(location.latitude,
+					 location.longitude);
+
+	var marker = Map.createMarker(Map.map, 'Current location',
+				      location.latitude, location.longitude, false);
+	Map.markers.push(marker);
+    });
+
     utils.fetchPosts().done(function(json) {
 	for (var i = 0; i < json.length; i++) {
 	    var marker = Map.createMarker(Map.map, json[i].title,
@@ -23,15 +32,6 @@ function initMap() {
 		console.log(this.data);
 	    });
 	}
-    });
-
-    utils.getCurrentLocation().done(function(location) {
-	var pos = new google.maps.LatLng(location.latitude,
-					 location.longitude);
-
-	var marker = Map.createMarker(Map.map, 'Current location',
-				      location.latitude, location.longitude, false);
-	Map.markers.push(marker);
     });
 }
 
