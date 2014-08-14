@@ -21,45 +21,39 @@ Map.initMap = function() {
     Map.infoWindow = new google.maps.InfoWindow;
 
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
-	var mapBounds = Map.map.getBounds();
-	var sw = mapBounds.getSouthWest();
-	var ne = mapBounds.getNorthEast();
-	var options = {
-	    'lat1': sw.lat(), 'lng1': sw.lng(),
-	    'lat2': ne.lat(), 'lng2': ne.lng()
-	};
+	var options = Map.createMapRegionQuery(Map.map);
+	console.log(options);
+
 	utils.fetchPosts(options).done(function(json) {
 	    // remove existing markers
 	    Map.markers.forEach(function(marker, i) {
 		marker.setMap(null);
 	    });
-	    Map.markers = [];
 
-	    for (var i = 0; i < json.length; i++) {
-		var marker = Map.createMarker(Map.map, json[i].title,
-					      json[i].latitude, json[i].longitude, false);
-		marker.data = json[i];
-		Map.markers.push(marker);
-
-		google.maps.event.addListener(marker, 'click', function() {
-		    var content = Map.jsonToContent(this.data);
-		    Map.infoWindow.setContent(content);
-		    Map.infoWindow.open(Map.map, this);
-		});
-	    }
+	    Map.markers = Map.createMarkers(Map.map, json);
+	    Map.addEventToMakers(Map.markers);
 	});
-
     });
 };
 
 Map.createMap = function(id, lat, lng) {
     var mapOptions = {
 	center: new google.maps.LatLng(lat, lng),
-	zoom: 8,
-	mapTypeId: google.maps.MapTypeId.ROADMAP
+	zoom: 8
     };
     var map = new google.maps.Map(document.getElementById(id), mapOptions);
     return map;
+};
+
+Map.createMapRegionQuery = function(map) {
+    var mapBounds = map.getBounds();
+    var sw = mapBounds.getSouthWest();
+    var ne = mapBounds.getNorthEast();
+    var options = {
+	'lat1': sw.lat(), 'lng1': sw.lng(),
+	'lat2': ne.lat(), 'lng2': ne.lng()
+    };
+    return options;
 };
 
 Map.createMarker = function(map, title, lat, lng, draggable) {
@@ -70,6 +64,27 @@ Map.createMarker = function(map, title, lat, lng, draggable) {
 	draggable: draggable
     });
     return marker;
+};
+
+Map.createMarkers = function(map, json) {
+    var markers = [];
+    for (var i = 0; i < json.length; i++) {
+	var marker = Map.createMarker(map, json[i].title,
+				      json[i].latitude, json[i].longitude, false);
+	marker.data = json[i];
+	markers.push(marker);
+    }
+    return markers;
+};
+
+Map.addEventToMakers = function(markers) {
+    markers.forEach(function(m, i) {
+	google.maps.event.addListener(m, 'click', function() {
+	    var content = Map.jsonToContent(this.data);
+	    Map.infoWindow.setContent(content);
+	    Map.infoWindow.open(this.getMap, this);
+	});
+    });
 };
 
 Map.jsonToContent = function(json) {
