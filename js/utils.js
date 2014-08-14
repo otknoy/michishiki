@@ -1,13 +1,5 @@
 var utils = {};
 
-// 使い方
-// utils.getCurrentLocation()
-//     .done(function(location) {
-// 	// success
-//     })
-//     .fail(function() {
-// 	// faile
-//     });
 utils.getCurrentLocation = function() {
     var dfd = $.Deferred();
 
