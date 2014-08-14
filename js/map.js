@@ -3,10 +3,10 @@ Map.map = null;
 Map.markers = null;
 
 $(document).on('pageshow', '#map', function() {
-    initMap();
+    Map.initMap();
 });
 
-function initMap() {
+Map.initMap = function() {
     Map.markers = [];
 
     $('#map-canvas').css('height', 500);
@@ -36,7 +36,7 @@ function initMap() {
 	    });
 	}
     });
-}
+};
 
 Map.createMap = function(id, lat, lng) {
     var mapOptions = {
