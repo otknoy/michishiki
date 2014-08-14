@@ -24,11 +24,7 @@ Map.initMap = function() {
 	var options = Map.createMapRegionQuery(Map.map);
 
 	utils.fetchPosts(options).done(function(json) {
-	    // remove existing markers
-	    Map.markers.forEach(function(marker, i) {
-		marker.setMap(null);
-	    });
-
+	    Map.removeMarkersFromMap(Map.markers);
 	    Map.markers = Map.createMarkers(Map.map, json);
 	    Map.addEventToMakers(Map.markers);
 	});
@@ -74,6 +70,12 @@ Map.createMarkers = function(map, json) {
 	markers.push(marker);
     }
     return markers;
+};
+
+Map.removeMarkersFromMap = function(markers) {
+    markers.forEach(function(marker, i) {
+	marker.setMap(null);
+    });
 };
 
 Map.addEventToMakers = function(markers) {
