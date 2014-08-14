@@ -1,14 +1,12 @@
 var Map = {};
 Map.map = null;
-Map.markers = null;
+Map.markers = [];
 
 $(document).on('pageshow', '#map', function() {
     Map.initMap();
 });
 
 Map.initMap = function() {
-    Map.markers = [];
-
     $('#map-canvas').css('height', 500);
     Map.map = Map.createMap('map-canvas', 34.87728, 135.576798); // kutc
 
@@ -22,19 +20,35 @@ Map.initMap = function() {
 
     Map.infoWindow = new google.maps.InfoWindow;
 
-    utils.fetchPosts().done(function(json) {
-	for (var i = 0; i < json.length; i++) {
-	    var marker = Map.createMarker(Map.map, json[i].title,
-					  json[i].latitude, json[i].longitude, false);
-	    marker.data = json[i];
-	    Map.markers.push(marker);
-
-	    google.maps.event.addListener(marker, 'click', function() {
-		var content = Map.jsonToContent(this.data);
-		Map.infoWindow.setContent(content);
-		Map.infoWindow.open(Map.map, this);
+    google.maps.event.addListener(Map.map, 'bounds_changed', function() {
+	var mapBounds = Map.map.getBounds();
+	var sw = mapBounds.getSouthWest();
+	var ne = mapBounds.getNorthEast();
+	var options = {
+	    'lat1': sw.lat(), 'lng1': sw.lng(),
+	    'lat2': ne.lat(), 'lng2': ne.lng()
+	};
+	utils.fetchPosts(options).done(function(json) {
+	    // remove existing markers
+	    Map.markers.forEach(function(marker, i) {
+		marker.setMap(null);
 	    });
-	}
+	    Map.markers = [];
+
+	    for (var i = 0; i < json.length; i++) {
+		var marker = Map.createMarker(Map.map, json[i].title,
+					      json[i].latitude, json[i].longitude, false);
+		marker.data = json[i];
+		Map.markers.push(marker);
+
+		google.maps.event.addListener(marker, 'click', function() {
+		    var content = Map.jsonToContent(this.data);
+		    Map.infoWindow.setContent(content);
+		    Map.infoWindow.open(Map.map, this);
+		});
+	    }
+	});
+
     });
 };
 
