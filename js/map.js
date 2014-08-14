@@ -22,7 +22,6 @@ Map.initMap = function() {
 
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
 	var options = Map.createMapRegionQuery(Map.map);
-	console.log(options);
 
 	utils.fetchPosts(options).done(function(json) {
 	    // remove existing markers
