@@ -13,7 +13,6 @@ Map.initMap = function() {
     utils.getCurrentLocation().done(function(location) {
 	var pos = new google.maps.LatLng(location.latitude,
 					 location.longitude);
-
 	Map.currentLocation = Map.createMarker(Map.map, 'Current location',
 					       location.latitude, location.longitude, false);
     });
@@ -24,9 +23,9 @@ Map.initMap = function() {
 	var options = Map.createMapRegionQuery(Map.map);
 
 	utils.fetchPosts(options).done(function(json) {
-	    Map.removeMarkersFromMap(Map.markers);
-	    Map.markers = Map.createMarkers(Map.map, json);
-	    Map.addEventToMakers(Map.markers);
+            Map.removeMarkersFromMap(Map.markers);
+            Map.markers = Map.createMarkers(Map.map, json);
+            Map.addEventToMakers(Map.markers);
 	});
     });
 };
@@ -83,7 +82,7 @@ Map.addEventToMakers = function(markers) {
 	google.maps.event.addListener(m, 'click', function() {
 	    var content = Map.jsonToContent(this.data);
 	    Map.infoWindow.setContent(content);
-	    Map.infoWindow.open(this.getMap, this);
+	    Map.infoWindow.open(this.getMap(), this);
 	});
     });
 };
