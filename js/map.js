@@ -89,15 +89,15 @@ Map.addEventToMakers = function(markers) {
 
 Map.jsonToContent = function(json) {
     var title = json.title;
-    var created_at = json.created_at;
+    var created_at = utils.utcToString(json.created_at);
     var posted_by = json.posted_by;
     var comment = json.comment;
 
     var content =
 	    '<div>' +
-	    '<h1>' + title + '</h1>' +
-	    '<h2>' + created_at + '</h2>' +
-	    '<h2>' + posted_by + '</h2>' +
+	    '<h2>' + title + '</h2>' +
+	    '<h3>' + created_at + '</h3>' +
+	    '<h3>' + posted_by + '</h3>' +
 	    '<p>' + comment + '</p>' +
 	    '</div>';
 
