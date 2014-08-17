@@ -40,3 +40,24 @@ utils.optionsToQueryString = function(options) {
     }
     return '?' + querys.join('&');
 };
+
+utils.utcToString = function(utc_ms) {
+    var date_obj = new Date(utc_ms);
+    var year = date_obj.getFullYear();
+    var month = date_obj.getMonth()+1;
+    var date = date_obj.getDate();
+    var day = ['日', '月', '火', '水', '木', '金', '土'][date_obj.getDay()];
+    var hour = date_obj.getHours();
+    var minute = date_obj.getMinutes();
+    if (month < 10) month = "0" + month;
+    if (date < 10) date = "0" + date;
+    if (hour < 10) hour = "0" + hour;
+    if (minute < 10) minute = "0" + minute;
+
+    var date_str = year + '/' +
+	    month + '/' +
+	    date + '(' + day + ') ' +
+	    hour + ':' + minute;
+
+    return date_str;
+}
