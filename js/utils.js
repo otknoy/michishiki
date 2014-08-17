@@ -60,4 +60,4 @@ utils.utcToString = function(utc_ms) {
 	    hour + ':' + minute;
 
     return date_str;
-}
+};
