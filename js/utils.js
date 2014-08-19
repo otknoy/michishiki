@@ -41,6 +41,35 @@ utils.optionsToQueryString = function(options) {
     return '?' + querys.join('&');
 };
 
+utils.QueryStringBuilder = function() {
+    this.options = {};
+};
+
+utils.QueryStringBuilder.prototype.setRegion = function(lat1, lng1, lat2, lng2) {
+    this.options['lat1'] = lat1;
+    this.options['lng1'] = lng1;
+    this.options['lat2'] = lat2;
+    this.options['lng2'] = lng2;
+};
+
+utils.QueryStringBuilder.prototype.setOrderBy = function(order_by, order) {
+    this.options['order_by'] = order_by;
+    this.options['order'] = order;
+};
+
+utils.QueryStringBuilder.prototype.setLimit = function(limit) {
+    this.options['limit'] = limit;
+};
+
+utils.QueryStringBuilder.prototype.build = function() {
+    var querys = [];
+    for (var key in this.options) {
+	var q = key + '=' + this.options[key];
+	querys.push(q);
+    }
+    return '?' + querys.join('&');
+};
+
 utils.utcToString = function(utc_ms) {
     var date_obj = new Date(utc_ms);
     var year = date_obj.getFullYear();
