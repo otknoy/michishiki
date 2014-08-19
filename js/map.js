@@ -20,7 +20,13 @@ Map.initMap = function() {
     Map.infoWindow = new google.maps.InfoWindow;
 
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
-	var options = Map.createMapRegionQuery(Map.map);
+	var bounds = Map.getMapBounds(Map.map);
+	var options = new utils.QueryOptionBuilder()
+		.setMapBounds(bounds.lat1, bounds.lng1,
+			      bounds.lat2, bounds.lng2)
+		.setOrderBy('created_at', 'descend')
+		.setLimit(100)
+		.build();
 
 	utils.fetchPosts(options).done(function(json) {
             Map.removeMarkersFromMap(Map.markers);
@@ -39,15 +45,15 @@ Map.createMap = function(id, lat, lng) {
     return map;
 };
 
-Map.createMapRegionQuery = function(map) {
+Map.getMapBounds = function(map) {
     var mapBounds = map.getBounds();
     var sw = mapBounds.getSouthWest();
     var ne = mapBounds.getNorthEast();
-    var options = {
+    var bounds = {
 	'lat1': sw.lat(), 'lng1': sw.lng(),
 	'lat2': ne.lat(), 'lng2': ne.lng()
     };
-    return options;
+    return bounds;
 };
 
 Map.createMarker = function(map, title, lat, lng, draggable) {
