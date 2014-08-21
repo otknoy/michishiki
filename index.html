@@ -83,12 +83,40 @@
     <div data-role="page" id="post-list">
       <div data-role="header" data-position="fixed" data-add-back-btn="true">
 	<h1>Post List</h1>
+	<a href="#query-select" data-role="button" class="ui-btn-right" data-icon="arrow-r" data-transition="slide">Next</a>
       </div>
 
       <div data-role="content">
 	<ul data-role="listview" id="post_list"></ul>
       </div>
     </div>
-    
+
+
+    <!-- Query Setting Page -->
+    <div data-role="page" id="query-setting">
+      <div data-role="header" data-position="fixed" data-add-back-btn="true">
+	<h1>Query Setting</h1>
+      </div>
+
+      <div data-role="content">
+	<form>
+	  <label>Order by:</label>
+	  <select name="order-by">
+	    <option value="posted_by">投稿者</option>
+	    <option value="updated_at">投稿日時</option>
+	  </select>
+
+	  <label>Order:</label>
+	  <select name="order" data-role="slider">
+	    <option value="ascend">昇順</option>
+	    <option value="descend">降順</option>
+	  </select>
+
+	  <label>Limit:</label>
+	  <input type="number" min="0" max="1000" value="100" name="limit" />
+	</form>
+      </div>
+    </div>
+
   </body>
 </html>
