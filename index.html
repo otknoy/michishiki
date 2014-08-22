@@ -16,6 +16,7 @@
     <script type="text/javascript" src="js/select_place.js"></script>
     <script type="text/javascript" src="js/post.js"></script>
     <script type="text/javascript" src="js/post_list.js"></script>
+    <script type="text/javascript" src="js/query_select.js"></script>    
 
   </head>
   <body>
@@ -101,19 +102,19 @@
       <div data-role="content">
 	<form>
 	  <label>Order by:</label>
-	  <select name="order-by">
+	  <select name="order-by" id="order-by">
 	    <option value="posted_by">投稿者</option>
 	    <option value="updated_at">投稿日時</option>
 	  </select>
 
 	  <label>Order:</label>
-	  <select name="order" data-role="slider">
+	  <select name="order" id="order" data-role="slider">
 	    <option value="ascend">昇順</option>
 	    <option value="descend">降順</option>
 	  </select>
 
 	  <label>Limit:</label>
-	  <input type="number" min="0" max="1000" value="100" name="limit" />
+	  <input type="number" min="0" max="1000" value="100" name="limit" id="limit"/>
 	</form>
       </div>
     </div>
