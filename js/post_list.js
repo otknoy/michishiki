@@ -4,6 +4,7 @@ $(document).on('pageshow', '#post-list', function() {
 
 function initPostList() {
     utils.fetchPosts().done(function(json) {
+	$('#post_list').empty();
 	for (var i = 0; i < json.length; i++) {
 	    var $li = createListItem(json[i].title, json[i].comment, json[i].posted_by);
 	    $('#post_list').append($li);
