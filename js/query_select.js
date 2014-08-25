@@ -1,6 +1,6 @@
 var queryOption = null;
 
-$(document).on('pageshow', '#query-setting', function() {
+$(document).on('pageinit', '#post-list', function() {
     updateQuery();
 
     $('#order-by').change(function() {
@@ -21,9 +21,8 @@ function updateQuery() {
     var $order   = $('#order option:selected');
     var $limit   = $('#limit');
 
-    var queryOption = new utils.QueryOptionBuilder();
-    queryOption.setOrderBy($orderBy.text(), $order.text());
-    queryOption.setLimit($limit.val());
-
-    queryOption = queryOption.build();
+    queryOption = new utils.QueryOptionBuilder()
+	.setOrderBy($orderBy.val(), $order.val())
+	.setLimit($limit.val())
+	.build();;
 }
