@@ -1,5 +1,5 @@
 $(function() {
-    $('#post_form').bind('submit', function(e) {
+    $('#post_form').submit(function(e) {
 	e.preventDefault();
 
 	var $form = $('#post_form');
@@ -20,8 +20,6 @@ $(function() {
 
 	    success: function(data, textStatus, xhr) {
 		$form[0].reset();
-
-		// 
 	    },
 
 	    error: function(xhr, textStatus, error) {
