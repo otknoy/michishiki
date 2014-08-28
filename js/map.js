@@ -39,7 +39,7 @@ Map.initMap = function() {
 Map.createMap = function(id, lat, lng) {
     var mapOptions = {
 	center: new google.maps.LatLng(lat, lng),
-	zoom: 8
+	zoom: 12
     };
     var map = new google.maps.Map(document.getElementById(id), mapOptions);
     return map;
