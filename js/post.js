@@ -5,8 +5,8 @@ $(function() {
 	var $form = $('#post_form');
 	var $button = $form.find('#post_button');
 	$.ajax({
-            url: $form.attr('action'),
-            type: $form.attr('method'),
+            url: 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/post.py',
+            type: 'post',
             data: $form.serialize(),
 	    timeout: 10000,
 
