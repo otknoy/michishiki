@@ -21,7 +21,7 @@ function updateQuery() {
     var $order   = $('#order option:selected');
     var $limit   = $('#limit');
 
-    queryOption = new utils.QueryOptionBuilder()
+    queryOption = new QueryOptionBuilder()
 	.setOrderBy($orderBy.val(), $order.val())
 	.setLimit($limit.val())
 	.build();;

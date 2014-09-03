@@ -8,7 +8,7 @@ $(document).on('pageshow', '#map', function() {
 
 Map.initMap = function() {
     $('#map-canvas').css('height', 500);
-    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798); // kutc
+    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798, 8); // kutc
 
     utils.getCurrentLocation().done(function(location) {
 	var pos = new google.maps.LatLng(location.latitude,
@@ -21,7 +21,7 @@ Map.initMap = function() {
 
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
 	var bounds = Map.getMapBounds(Map.map);
-	var options = new utils.QueryOptionBuilder()
+	var options = new QueryOptionBuilder()
 		.setMapBounds(bounds.lat1, bounds.lng1,
 			      bounds.lat2, bounds.lng2)
 		.setOrderBy('created_at', 'descend')
@@ -36,10 +36,10 @@ Map.initMap = function() {
     });
 };
 
-Map.createMap = function(id, lat, lng) {
+Map.createMap = function(id, lat, lng, zoom) {
     var mapOptions = {
 	center: new google.maps.LatLng(lat, lng),
-	zoom: 8
+	zoom: zoom
     };
     var map = new google.maps.Map(document.getElementById(id), mapOptions);
     return map;
