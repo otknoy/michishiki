@@ -23,7 +23,7 @@ utils.getCurrentLocation = function() {
 utils.fetchPosts = function(options) {
     var dfd = $.Deferred();
 
-    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/select.py';
+    var api_uri = 'http://amateras.wsd.kutc.kansai-u.ac.jp/~otsuka/michishiki_api_server/get_post.py';
     var query_string = utils.optionsToQueryString(options);
     $.getJSON(api_uri + query_string, function(json) {
 	dfd.resolve(json);
