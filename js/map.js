@@ -20,21 +20,27 @@ Map.initMap = function() {
     Map.infoWindow = new google.maps.InfoWindow;
 
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
-	var bounds = Map.getMapBounds(Map.map);
-	var options = new QueryOptionBuilder()
-		.setMapBounds(bounds.lat1, bounds.lng1,
-			      bounds.lat2, bounds.lng2)
-		.setOrderBy('created_at', 'descend')
-		.setLimit(100)
-		.build();
-
-	utils.fetchPosts(options).done(function(json) {
-            Map.removeMarkersFromMap(Map.markers);
-            Map.markers = Map.createMarkers(Map.map, json);
-            Map.addEventToMakers(Map.markers);
-	});
+	utils.fetchPosts(Map.buildOption()).done(Map.updateMarkers);
     });
 };
+
+Map.buildOption = function() {
+    var bounds = Map.getMapBounds(Map.map);
+    var options = new QueryOptionBuilder()
+	    .setMapBounds(bounds.lat1, bounds.lng1,
+			  bounds.lat2, bounds.lng2)
+	    .setOrderBy('created_at', 'descend')
+	    .setLimit(100)
+	    .build();
+    return options;
+};
+
+Map.updateMarkers = function(json) {
+    Map.removeMarkersFromMap(Map.markers);
+    Map.markers = Map.createMarkers(Map.map, json);
+    Map.addEventToMakers(Map.markers);
+};
+
 
 Map.createMap = function(id, lat, lng, zoom) {
     var mapOptions = {
