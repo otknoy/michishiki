@@ -8,11 +8,9 @@ $(document).on('pageshow', '#map', function() {
 
 Map.initMap = function() {
     $('#map-canvas').css('height', 500);
-    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798, 8); // kutc
 
     utils.getCurrentLocation().done(function(location) {
-	var pos = new google.maps.LatLng(location.latitude,
-					 location.longitude);
+	Map.map = Map.createMap(location.latitude, location.longitude, 8);
 	Map.currentLocation = Map.createMarker(Map.map, 'Current location',
 					       location.latitude, location.longitude, false);
     });
