@@ -1,5 +1,4 @@
 var Map = {};
-Map.map = null;
 Map.markers = [];
 
 $(document).on('pageshow', '#map', function() {
