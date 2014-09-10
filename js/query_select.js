@@ -3,15 +3,7 @@ var queryOption = null;
 $(document).on('pageinit', '#post-list', function() {
     updateQuery();
 
-    $('#order-by').change(function() {
-	updateQuery();
-    });
-    
-    $('#order').change(function() {
-	updateQuery();
-    });
-    
-    $('#limit').change(function() {
+    $('#order-by, #order, #limit').change(function() {
 	updateQuery();
     });
 });
