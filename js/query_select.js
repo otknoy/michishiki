@@ -16,5 +16,5 @@ function updateQuery() {
     queryOption = new QueryOptionBuilder()
 	.setOrderBy($orderBy.val(), $order.val())
 	.setLimit($limit.val())
-	.build();;
+	.build();
 }
