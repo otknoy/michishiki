@@ -9,12 +9,12 @@ $(document).on('pageinit', '#post-list', function() {
 });
 
 function updateQuery() {
-    var $orderBy = $('#order-by option:selected');
-    var $order   = $('#order option:selected');
-    var $limit   = $('#limit');
+    var orderBy = $('#order-by option:selected').val();
+    var order   = $('#order option:selected').val();
+    var limit   = $('#limit').val();
 
     queryOption = new QueryOptionBuilder()
-	.setOrderBy($orderBy.val(), $order.val())
-	.setLimit($limit.val())
+	.setOrderBy(orderBy, order)
+	.setLimit(limit)
 	.build();
 }
