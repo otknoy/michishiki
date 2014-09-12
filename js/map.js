@@ -33,7 +33,7 @@ Map.buildOption = function() {
 };
 
 Map.updateMarkers = function(json) {
-    Map.removeMarkersFromMap(Map.markers);
+    Map.removeMarkers(Map.markers);
     Map.markers = Map.createMarkers(Map.map, json);
     Map.addEventToMakers(Map.markers);
 };
@@ -80,7 +80,7 @@ Map.createMarkers = function(map, json) {
     return markers;
 };
 
-Map.removeMarkersFromMap = function(markers) {
+Map.removeMarkers = function(markers) {
     markers.forEach(function(marker, i) {
 	marker.setMap(null);
     });
