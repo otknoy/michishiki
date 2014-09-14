@@ -1,12 +1,12 @@
 var Map = {};
 Map.markers = [];
 
-$(document).on('pageshow', '#map', function() {
+$(document).on('pageshow', '#main-map', function() {
     Map.initMap();
 });
 
 Map.initMap = function() {
-    $('#map-canvas').css('height', 500);
+        $('#map-canvas').css('height', 500);
 
     utils.getCurrentLocation().done(function(location) {
 	Map.map = Map.createMap('map-canvas', location.latitude, location.longitude, 8);
