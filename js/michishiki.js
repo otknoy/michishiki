@@ -2,8 +2,12 @@ var michishiki = {};
 
 $(document).on('pageshow', '#main-map', function() {
     initMap();
-});
 
+    // navbar event
+    $('div[data-role="navbar"] ul li a').on('click', function () {
+	alert($(this).text());
+    });
+});
 
 var initMap = function() {
     $('#map-canvas').css('height', 450);
