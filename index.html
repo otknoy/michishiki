@@ -18,42 +18,34 @@
     <!-- <script src="js/post.js"></script> -->
     <!-- <script src="js/post_list.js"></script> -->
     <!-- <script src="js/query_select.js"></script> -->
+    <script src="js/michishiki.js"></script>
 
   </head>
   <body>
 
-    <!-- 地元民 Map -->
-    <div data-role="page" id="jimoto-map">
+    <!-- Main Map -->
+    <div data-role="page" id="main-map">
       <div data-role="header" data-position="fixed">
-	<a href="#kankou-map"
-	   data-icon="arrow-l"
-	   data-transition="flip">観光者の地図</a>
-	<h1>地元民の地図</h1>
+	<h1>michishiki</h1>
 	<a href="#select-place"
-	   data-icon="plus"
-	   data-transition="slide">Post</a>
+	   class="ui-btn-right"
+           data-icon="plus"
+           data-transition="slide">Post</a>
+
+	<div data-role="navbar" id="">
+	  <ul>
+	    <li><a href="#">地元</a></li>
+	    <li><a href="#" class="ui-btn-active">両方</a></li>
+	    <li><a href="#">観光</a></li>
+	  </ul>
+	</div>
       </div>
 
       <div data-role="content">
 	<div id="map-canvas"></div>
       </div>
     </div>
-
-    <!-- 観光者 Map -->
-    <div data-role="page" id="kankou-map">
-      <div data-role="header" data-position="fixed">
-	<a href="#jimoto-map"
-	   data-icon="arrow-l"
-	   data-transition="flip">地元民の地図</a>
-	<h1>観光者の地図</h1>
-	<a href="#select-place"
-	   data-icon="plus"
-	   data-transition="slide">Post</a>
-      </div>
-
-      <div data-role="content"></div>
-    </div>
-
+    
     
     <!-- 投稿場所指定-->
     <div data-role="page" id="select-place">
@@ -63,7 +55,8 @@
 	<h1>Select Place</h1>
 	<a href="#post"
 	   data-icon="arrow-r"
-	   class="ui-btn-right">Next</a>
+	   class="ui-btn-right"
+	   data-transition="slide">Next</a>
       </div>
 
       <div data-role="content">
