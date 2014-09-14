@@ -1,7 +1,7 @@
 var Map = {};
 Map.markers = [];
 
-$(document).on('pageshow', '#main-map', function() {
+$(document).on('pageshow', '#jimoto-map', function() {
     Map.initMap();
 });
 
