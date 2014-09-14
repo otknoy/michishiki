@@ -4,7 +4,8 @@ $(document).on('pageshow', '#main-map', function() {
     initMap();
 });
 
-initMap = function() {
+
+var initMap = function() {
     $('#map-canvas').css('height', 450);
 
     utils.getCurrentLocation().done(function(location) {
