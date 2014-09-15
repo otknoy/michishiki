@@ -54,7 +54,22 @@ Map.createMarkers = function(map, json) {
     for (var i = 0; i < json.length; i++) {
 	var marker = Map.createMarker(map, json[i].title,
 				      json[i].latitude, json[i].longitude, false);
+	// data binding
 	marker.data = json[i];
+
+	marker.isLocal = function() {
+	    var threshold = 50;
+	    return this.data.localite > threshold;
+	};
+
+	marker.setVisible = function(visible) {
+	    if (visible) {
+		this.setMap(Map.map);
+	    } else {
+		this.setMap(null);
+	    }
+	};
+
 	markers.push(marker);
     }
     return markers;
