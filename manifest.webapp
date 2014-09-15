@@ -2,7 +2,7 @@
     "name": "MichiShiki",
     "launch_path": "/index.html",
     "icons": {
-	"128": "img/icon-128.png"
+	"128": "/img/icon-128.png"
     },
     "developer": {
 	"name": "Naoya Otsuka",
