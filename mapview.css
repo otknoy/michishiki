@@ -21,9 +21,9 @@
 }
 
 .modal {
-    width: 50%!important;
-    left: 25%!important;
-    right: 25%!important;
+    width: 75%!important;
+    left: 12.5%!important;
+    right: 12.5%!important;
 }
 .modal div:last-child {
     right: -1px!important;
