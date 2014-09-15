@@ -92,6 +92,7 @@ Map.addEventToMakers = function(markers) {
 	    var content = Map.jsonToContent(this.data);
 	    Map.infoWindow.setContent(content);
 	    Map.infoWindow.open(this.getMap(), this);
+
 	});
     });
 };
@@ -106,9 +107,20 @@ Map.jsonToContent = function(json) {
 	    '<div>' +
 	    '<h2>' + title + '</h2>' +
 	    '<h3>' + created_at + '</h3>' +
-	    '<h3>' + posted_by + '</h3>' +
-	    '<p>' + comment + '</p>' +
+
+        '<a href="#dialog" onclick="showMoreInfo()">詳細情報を見る</a>'+
+        '<div id="dialog">'+
+        '<h4>' + posted_by + '</h4>'+
+        '<p>' + comment + '</p>'+
+        '</div>'+
 	    '</div>';
 
     return content;
 };
+
+function showMoreInfo(){
+    $('#dialog').toggleClass('active');
+    $('.gm-style-iw').toggleClass('active');
+    $('.gm-style-iw').parent().toggleClass('modal');
+}
+
