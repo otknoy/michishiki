@@ -12,10 +12,33 @@ Map.buildOption = function() {
     return options;
 };
 
-Map.updateMarkers = function(json) {
+Map.updateMarkers = function(json, mode) {
     Map.removeMarkers(Map.markers);
     Map.markers = Map.createMarkers(Map.map, json);
+    Map.changeVisibleMarkersByMode(mode);
     Map.addEventToMakers(Map.markers);
+};
+
+Map.changeVisibleMarkersByMode = function(mode) {
+    if (mode == "both") {
+	Map.markers.forEach(function(m) { m.setVisible(true); });
+    } else if (mode == "local") {
+	Map.markers.forEach(function(m) {
+	    if (m.isLocal()) {
+		m.setVisible(true);
+	    } else {
+		m.setVisible(false);
+	    }
+	});
+    } else if (mode == "tourism") {
+	Map.markers.forEach(function(m) {
+	    if (m.isLocal()) {
+		m.setVisible(false);
+	    } else {
+		m.setVisible(true);
+	    }
+	});
+    }
 };
 
 
@@ -54,6 +77,7 @@ Map.createMarkers = function(map, json) {
     for (var i = 0; i < json.length; i++) {
 	var marker = Map.createMarker(map, json[i].title,
 				      json[i].latitude, json[i].longitude, false);
+
 	// data binding
 	marker.data = json[i];
 
