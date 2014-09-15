@@ -15,6 +15,7 @@ Map.buildOption = function() {
 Map.updateMarkers = function(json, mode) {
     Map.removeMarkers(Map.markers);
     Map.markers = Map.createMarkers(Map.map, json);
+    Map.setIcon(Map.markers);
     Map.changeVisibleMarkersByMode(mode);
     Map.addEventToMakers(Map.markers);
 };
@@ -39,6 +40,16 @@ Map.changeVisibleMarkersByMode = function(mode) {
 	    }
 	});
     }
+};
+
+Map.setIcon = function(markers) {
+    markers.forEach(function(m, i) {
+	if (m.isLocal()) {
+	    m.setIcon('img/local_32.png');
+	} else {
+	    m.setIcon('img/tourism_32.png');
+	}
+    });
 };
 
 
