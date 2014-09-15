@@ -1,19 +1,17 @@
 var Place = {};
 
 $(document).on('pageshow', '#select-place', function() {
-    $('#select-place-map-canvas').css('height', 500);
+    $('#select-place-map').css('height', 450);
 
-    utils.getCurrentLocation().done(function(location) {
-	Place.map = Map.createMap('select-place-map-canvas',
-				  location.latitude, location.longitude, 12);
-	Place.currentLocation = Map.createMarker(Place.map, 'Current Location',
-						 location.latitude, location.longitude, true);
+    var pos = Map.map.getCenter();
+    Place.map = Map.createMap('select-place-map', pos.lat(), pos.lng(), 14); // kutc
 
+    Place.currentLocation = Map.createMarker(Place.map, 'Current Location',
+					     pos.lat(), pos.lng(), true);
+    Place.setPostLocation();
+
+    google.maps.event.addListener(Place.currentLocation, 'dragend', function() {
 	Place.setPostLocation();
-
-	google.maps.event.addListener(Place.currentLocation, 'dragend', function() {
-	    Place.setPostLocation();
-	});
     });
 });
 
