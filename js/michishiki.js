@@ -15,7 +15,7 @@ $(document).on('pageshow', '#main-map', function() {
 var initMap = function() {
     $('#map-canvas').css('height', 450);
 
-    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798, 8); // kutc
+    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798, 12); // kutc
     google.maps.event.addListener(Map.map, 'bounds_changed', function() {
 	utils.fetchPosts(Map.buildOption()).done(Map.updateMarkers, michishiki.mode);
     });

@@ -4,7 +4,7 @@ $(document).on('pageshow', '#select-place', function() {
     $('#select-place-map').css('height', 450);
 
     var pos = Map.map.getCenter();
-    Place.map = Map.createMap('select-place-map', pos.lat(), pos.lng(), 8); // kutc
+    Place.map = Map.createMap('select-place-map', pos.lat(), pos.lng(), 14); // kutc
 
     Place.currentLocation = Map.createMarker(Place.map, 'Current Location',
 					     pos.lat(), pos.lng(), true);
