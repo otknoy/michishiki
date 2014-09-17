@@ -97,6 +97,13 @@ Map.createMarkers = function(map, json) {
 	    return this.data.localite > threshold;
 	};
 
+	// set icon
+	if (marker.isLocal()) {
+	    marker.setIcon('img/local_32.png');
+	} else {
+	    marker.setIcon('img/tourism_32.png');
+	}
+
 	markers.push(marker);
     }
     return markers;
