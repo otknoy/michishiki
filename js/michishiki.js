@@ -1,32 +1,44 @@
 var michishiki = {};
-michishiki.mode = null;
+michishiki.map = null;
+michishiki.markers = [];
 
 $(document).on('pageshow', '#main-map', function() {
     initMap();
 
     // navbar event
     $('div[data-role="navbar"] ul li a').on('click', function () {
-	var clickedMode = $(this).text();
-	michishiki.mode = {"両方": "both", "地元": "local", "観光": "tourism"}[clickedMode];
-	Map.changeVisibleMarkersByMode(michishiki.mode);
+	var mode = $(this).attr('id');
+	console.log(mode);
+
+	var markers = michishiki.markers;
+	var l_markers = markers.filter(function(m) {
+	    return m.isLocal();
+	});
+	var t_markers = markers.filter(function(m) {
+	    return !m.isLocal();
+	});
+
+	console.log(l_markers.length);
+	console.log(t_markers.length);
+
+	if (mode == 'both') {
+	    l_markers.forEach(function(m) { m.setMap(michishiki.map); });
+	    t_markers.forEach(function(m) { m.setMap(michishiki.map); });
+	 } else if (mode == 'local') {
+	    l_markers.forEach(function(m) { m.setMap(michishiki.map); });
+	    t_markers.forEach(function(m) { m.setMap(null); });
+	 } else if (mode == 'tourism') {
+	    l_markers.forEach(function(m) { m.setMap(null); });
+	    t_markers.forEach(function(m) { m.setMap(michishiki.map); });
+	}
     });
 });
 
 var initMap = function() {
     $('#map-canvas').css('height', 450);
 
-    Map.map = Map.createMap('map-canvas', 34.87728, 135.576798, 12); // kutc
-    google.maps.event.addListener(Map.map, 'bounds_changed', function() {
-	utils.fetchPosts(Map.buildOption()).done(Map.updateMarkers, michishiki.mode);
-    });
-
-    utils.getCurrentLocation().done(function(location) {
-	var pos = new google.maps.LatLng(location.latitude,
-					 location.longitude);
-	Map.map.setCenter(pos);
-	Map.currentLocation = Map.createMarker(Map.map, 'Current location',
-					       location.latitude, location.longitude, false);
-
-	Map.infoWindow = new google.maps.InfoWindow;
+    michishiki.map = Map.createMap('map-canvas', 34.705895, 135.494474, 12);
+    michishiki.api.getPost().done(function(json) {
+	michishiki.markers = Map.createMarkers(michishiki.map, json);
     });
 };

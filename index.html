@@ -10,6 +10,11 @@
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
 
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="js/michishiki.js"></script>
+    <script src="js/michishiki_api.js"></script>
+    <script src="js/map.js"></script>
+
     <link rel="stylesheet" href="css/mapview.css">
   </head>
   <body>
@@ -25,9 +30,9 @@
 
 	<div data-role="navbar" id="">
 	  <ul>
-	    <li><a href="#">地元</a></li>
-	    <li><a href="#" class="ui-btn-active">両方</a></li>
-	    <li><a href="#">観光</a></li>
+	    <li><a href="#" id="local">地元</a></li>
+	    <li><a href="#" id="both"class="ui-btn-active">両方</a></li>
+	    <li><a href="#" id="tourism">観光</a></li>
 	  </ul>
 	</div>
       </div>
