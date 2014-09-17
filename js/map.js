@@ -97,14 +97,6 @@ Map.createMarkers = function(map, json) {
 	    return this.data.localite > threshold;
 	};
 
-	marker.setVisible = function(visible) {
-	    if (visible) {
-		this.setMap(Map.map);
-	    } else {
-		this.setMap(null);
-	    }
-	};
-
 	markers.push(marker);
     }
     return markers;
