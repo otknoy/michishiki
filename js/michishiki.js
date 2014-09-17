@@ -8,7 +8,6 @@ $(document).on('pageshow', '#main-map', function() {
     // navbar event
     $('div[data-role="navbar"] ul li a').on('click', function () {
 	var mode = $(this).attr('id');
-	console.log(mode);
 
 	var markers = michishiki.markers;
 	var l_markers = markers.filter(function(m) {
@@ -17,9 +16,6 @@ $(document).on('pageshow', '#main-map', function() {
 	var t_markers = markers.filter(function(m) {
 	    return !m.isLocal();
 	});
-
-	console.log(l_markers.length);
-	console.log(t_markers.length);
 
 	if (mode == 'both') {
 	    l_markers.forEach(function(m) { m.setMap(michishiki.map); });
