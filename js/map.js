@@ -99,9 +99,9 @@ Map.createMarkers = function(map, json) {
 
 	// set icon
 	if (marker.isLocal()) {
-	    marker.setIcon('img/local_32.png');
+	    marker.setIcon('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|6464FF|');
 	} else {
-	    marker.setIcon('img/tourism_32.png');
+	    marker.setIcon('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF6464|');
 	}
 
 	markers.push(marker);
