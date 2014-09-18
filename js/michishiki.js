@@ -30,6 +30,10 @@ $(document).on('pageshow', '#main-map', function() {
     });
 });
 
+$(document).on('pageshow', '#select-place', function() {
+    michishiki.initPlaceSelectMap();
+});
+
 michishiki.initMainMap = function() {
     $('#map-canvas').css('height', 450);
 
@@ -37,4 +41,21 @@ michishiki.initMainMap = function() {
     michishiki.api.getPost().done(function(json) {
 	michishiki.markers = Map.createMarkers(michishiki.map, json);
     });
+};
+
+michishiki.initPlaceSelectMap = function() {
+    $('#select-place-map').css('height', 450);
+
+    var pos = michishiki.map.getCenter();
+    var map = Map.createMap('select-place-map', pos.lat(), pos.lng(), 14);
+    var marker = Map.createMarker(map, 'Current Location',
+				  pos.lat(), pos.lng(), true);
+
+    michishiki.setPostLocation(pos.lat(), pos.lng());
+
+};
+
+michishiki.setPostLocation = function(latitude, longitude) {
+    $('#post-lat').val(latitude);
+    $('#post-lng').val(longitude);
 };
