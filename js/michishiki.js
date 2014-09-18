@@ -52,7 +52,6 @@ michishiki.initPlaceSelectMap = function() {
 				  pos.lat(), pos.lng(), true);
 
     michishiki.setPostLocation(pos.lat(), pos.lng());
-
 };
 
 michishiki.setPostLocation = function(latitude, longitude) {
