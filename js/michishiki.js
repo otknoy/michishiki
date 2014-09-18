@@ -3,7 +3,7 @@ michishiki.map = null;
 michishiki.markers = [];
 
 $(document).on('pageshow', '#main-map', function() {
-    initMap();
+    michishiki.initMainMap();
 
     // navbar event
     $('div[data-role="navbar"] ul li a').on('click', function () {
@@ -30,7 +30,7 @@ $(document).on('pageshow', '#main-map', function() {
     });
 });
 
-var initMap = function() {
+michishiki.initMainMap = function() {
     $('#map-canvas').css('height', 450);
 
     michishiki.map = Map.createMap('map-canvas', 34.705895, 135.494474, 12);
