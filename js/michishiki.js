@@ -51,10 +51,6 @@ michishiki.initPlaceSelectMap = function() {
     var marker = Map.createMarker(map, 'Current Location',
 				  pos.lat(), pos.lng(), true);
 
-    michishiki.setPostLocation(pos.lat(), pos.lng());
-};
-
-michishiki.setPostLocation = function(latitude, longitude) {
-    $('#post-lat').val(latitude);
-    $('#post-lng').val(longitude);
+    $('#post-lat').val(pos.lat());
+    $('#post-lng').val(pos.lng());
 };
