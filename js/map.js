@@ -1,57 +1,4 @@
 var Map = {};
-Map.markers = [];
-
-Map.buildOption = function() {
-    var bounds = Map.getMapBounds(Map.map);
-    var options = new QueryOptionBuilder()
-	    .setMapBounds(bounds.lat1, bounds.lng1,
-			  bounds.lat2, bounds.lng2)
-	    .setOrderBy('created_at', 'descend')
-	    .setLimit(100)
-	    .build();
-    return options;
-};
-
-Map.updateMarkers = function(json, mode) {
-    Map.removeMarkers(Map.markers);
-    Map.markers = Map.createMarkers(Map.map, json);
-    Map.setIcon(Map.markers);
-    Map.changeVisibleMarkersByMode(mode);
-    Map.addEventToMakers(Map.markers);
-};
-
-Map.changeVisibleMarkersByMode = function(mode) {
-    if (mode == "both") {
-	Map.markers.forEach(function(m) { m.setVisible(true); });
-    } else if (mode == "local") {
-	Map.markers.forEach(function(m) {
-	    if (m.isLocal()) {
-		m.setVisible(true);
-	    } else {
-		m.setVisible(false);
-	    }
-	});
-    } else if (mode == "tourism") {
-	Map.markers.forEach(function(m) {
-	    if (m.isLocal()) {
-		m.setVisible(false);
-	    } else {
-		m.setVisible(true);
-	    }
-	});
-    }
-};
-
-Map.setIcon = function(markers) {
-    markers.forEach(function(m, i) {
-	if (m.isLocal()) {
-	    m.setIcon('img/local_32.png');
-	} else {
-	    m.setIcon('img/tourism_32.png');
-	}
-    });
-};
-
 
 Map.createMap = function(id, lat, lng, zoom) {
     var mapOptions = {
@@ -152,4 +99,3 @@ function showMoreInfo(){
     $('.gm-style-iw').toggleClass('active');
     $('.gm-style-iw').parent().toggleClass('modal');
 }
-
