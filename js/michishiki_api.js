@@ -14,9 +14,15 @@ michishiki.api.getPost = function(options) {
 };
 
 michishiki.api.post = function(options) {
-    var api_url = michishiki.api.uri + 'post.py';
+    var dfd = $.Deferred();
 
-    // 
+    var api_url = michishiki.api.uri + 'post.py';
+    var query_string = michishiki.api.utils.optionsToQueryString(options);
+    $.getJSON(api_uri + query_string, function(json) {
+	dfd.resolve(json);
+    });
+
+    return dfd.promise();
 };
 
 
