@@ -1,9 +1,13 @@
 var michishiki = {};
 michishiki.map = null;
 michishiki.markers = [];
+michishiki.mode = null;
 
 $(document).on('pageshow', '#main-map', function() {
     michishiki.initMainMap();
+
+    // Initi mode
+    michishiki.mode = $('div[data-role="navbar"] ul li a.ui-btn-active').attr('id');
 
     // navbar event
     $('div[data-role="navbar"] ul li a').on('click', function () {
@@ -27,6 +31,8 @@ $(document).on('pageshow', '#main-map', function() {
 	    l_markers.forEach(function(m) { m.setMap(null); });
 	    t_markers.forEach(function(m) { m.setMap(michishiki.map); });
 	}
+
+	michishiki.mode = mode;
     });
 });
 
