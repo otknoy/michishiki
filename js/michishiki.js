@@ -44,13 +44,10 @@ $(document).on('pageshow', '#select-place', function() {
     var marker = Map.createMarker(map, 'Current Location',
 				  pos.lat(), pos.lng(), true);
 
-    // Init form
-    $('#post-lat').val(pos.lat());
-    $('#post-lng').val(pos.lng());
-
-    // Update form if marker is dragged
-    google.maps.event.addListener(marker, 'dragend', function(e) {
-	var p = this.getPosition();
+    // next button in select place page
+    $('a[href="#post"]').click(function() {
+	// Set latitude and longitude in form
+	var p = marker.getPosition();
 	$('#post-lat').val(p.lat());
 	$('#post-lng').val(p.lng());
     });
