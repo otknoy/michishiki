@@ -50,6 +50,18 @@ $(document).on('pageshow', '#select-place', function() {
 	var p = marker.getPosition();
 	$('#post-lat').val(p.lat());
 	$('#post-lng').val(p.lng());
+
+	// Set radio button state
+	if (michishiki.mode == 'local') {
+	    $('#localite-local').attr("checked", true).checkboxradio('refresh');
+	    $('#localite-tourism').attr("checked", false).checkboxradio('refresh');
+	} else if (michishiki.mode == 'tourism') {
+	    $('#localite-local').attr("checked", false).checkboxradio('refresh');
+	    $('#localite-tourism').attr("checked", true).checkboxradio('refresh');
+	} else if (michishiki.mode == 'both') {
+	    $('#localite-local').attr("checked", false).checkboxradio('refresh');
+	    $('#localite-tourism').attr("checked", false).checkboxradio('refresh');
+	}
     });
 });
 
