@@ -45,10 +45,11 @@ Map.createMarkers = function(map, json) {
 	};
 
 	// set icon
+	var chartApi = 'http://chart.apis.google.com/chart';
 	if (marker.isLocal()) {
-	    marker.setIcon('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|6464FF|');
+	    marker.setIcon(chartApi + '?chst=d_map_pin_letter&chld=|6464FF|');
 	} else {
-	    marker.setIcon('http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=|FF6464|');
+	    marker.setIcon(chartApi + '?chst=d_map_pin_letter&chld=|FF6464|');
 	}
 
 	markers.push(marker);
