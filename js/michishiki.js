@@ -4,7 +4,12 @@ michishiki.markers = [];
 michishiki.mode = null;
 
 $(document).on('pageshow', '#main-map', function() {
-    michishiki.initMainMap();
+    // Init map
+    $('#map-canvas').css('height', 450);
+    michishiki.map = Map.createMap('map-canvas', 34.705895, 135.494474, 12);
+    michishiki.api.getPost().done(function(json) {
+	michishiki.markers = Map.createMarkers(michishiki.map, json);
+    });
 
     // Initi mode
     michishiki.mode = $('div[data-role="navbar"] ul li a.ui-btn-active').attr('id');
@@ -96,12 +101,3 @@ $(document).on('pageinit', '#post', function() {
 	});
     });
 });
-
-michishiki.initMainMap = function() {
-    $('#map-canvas').css('height', 450);
-
-    michishiki.map = Map.createMap('map-canvas', 34.705895, 135.494474, 12);
-    michishiki.api.getPost().done(function(json) {
-	michishiki.markers = Map.createMarkers(michishiki.map, json);
-    });
-};
